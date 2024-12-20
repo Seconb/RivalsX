@@ -14,7 +14,7 @@ If it fails or something make sure you disable Secure Boot and Core Isolation on
 1. (LOGITECH USERS) Download: https://download01.logi.com/web/ftp/pub/techsupport/gaming/lghub_installer_2021.3.5164.exe, then after installing uncheck "Automatic Updates"
 2. Download Python (any version newer than 3.6 will work), in the installer make sure you check "Add Python.EXE to PATH" in the installer or it won't work.
 3. Change your stuff in config.ini, and if using arduino then change MOUSE_TYPE to arduino, if using the driver keep it on driver, if using logitech keep it on logitech or ghub.
-4. Open "install_libraries.bat", then when that's done open Colorbot.py
+4. Open "install_libraries.bat", then when that's done open RunColorbot.bat as admin.
 5. Change your ingame enemy outline color to Pinkish-Purple, Green, or Blue-Green, and set your brightness ingame to 100. You can change your monitor's brightness (OUTSIDE OF GAME) if it's too much.
 6. Disable Mouse Acceleration from the game files (Google how to do this). It will help tremendously.
 7. As you use the colorbot adjust settings so that things work. Edit config.ini to change config, save the file and the colorbot will auto-update it. 
