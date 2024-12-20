@@ -5,7 +5,8 @@ def find_arduino():
     ports = list(serial.tools.list_ports.comports())
     for port in ports:
         if "USB Serial Device" in port.description: # change this part to what your arduino appears as under ports in device manager
-            return port.device
+            m = serial.Serial(port.device, 115200)
+            return m
     return None
 
 def mouse_cmd(x, y, click, m):
