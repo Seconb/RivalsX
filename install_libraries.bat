@@ -18,7 +18,7 @@ echo Upgrading pip...
 python -m pip install --upgrade pip
 
 :: Install required libraries
-set LIBRARIES=Pillow pywin32 bettercam configparser opencv-python numpy colorama hidapi
+set LIBRARIES=Pillow pywin32 bettercam configparser opencv-python numpy colorama pyserial
 
 for %%L in (%LIBRARIES%) do (
     echo Installing %%L...

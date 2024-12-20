@@ -10,6 +10,7 @@ import math
 from colorama import Fore, Style
 from utils.keybinds import *
 from utils.logitech_mouse import *
+from utils.arduino_mouse import *
 import tkinter as tk
 from PIL import Image, ImageDraw, ImageTk
 import threading
@@ -18,8 +19,11 @@ import queue
 def getMouse():
     try:
         if "arduino" in config.get("Config", "MOUSE_TYPE").lower():
-            from utils.arduino_mouse import MouseInstruct
-            return MouseInstruct.getMouse()
+            m = find_arduino()
+            if not m:
+                print("[-] Arduino not found...")
+                input();exit()
+            return m
         elif "driver" in config.get("Config", "MOUSE_TYPE").lower():
             from utils.driver_mouse import mainFunction
             return mainFunction()
@@ -27,12 +31,11 @@ def getMouse():
             mouse_open()
             return None
     except Exception as e:
-        input(e)
-        os.exit()
+        input(e);exit()
 
 def loadsettings():
 
-    global config, TOGGLE_HOLD_MODE, SMOOTH_FIX, AIM_KEY, CAM_FOV, AIM_OFFSET_Y, AIM_OFFSET_X, AIM_SPEED_X, AIM_SPEED_Y, upper, lower, AIM_FOV, SHOW_FOV, AIM_FOV_COLOR, TRIGGERBOT_DISTANCE, TRIGGERBOT_KEY, TRIGGERBOT, COLOR
+    global config, MOUSE_TYPE, TOGGLE_HOLD_MODE, SMOOTH_FIX, AIM_KEY, CAM_FOV, AIM_OFFSET_Y, AIM_OFFSET_X, AIM_SPEED_X, AIM_SPEED_Y, upper, lower, AIM_FOV, SHOW_FOV, AIM_FOV_COLOR, TRIGGERBOT_DISTANCE, TRIGGERBOT_KEY, TRIGGERBOT, COLOR
 
     sdir = os.path.dirname(os.path.abspath(__file__))
     config_file_path = os.path.join(sdir, "config.ini")
@@ -54,6 +57,7 @@ def loadsettings():
     TRIGGERBOT_KEY = config.get("Config", "TRIGGERBOT_KEY")
     TRIGGERBOT_DISTANCE = int(config.get("Config", "TRIGGERBOT_DISTANCE"))
     AIM_FOV_COLOR = tuple(map(int, config.get("Config", "AIM_FOV_COLOR").split(', ')))
+    MOUSE_TYPE = config.get("Config", "MOUSE_TYPE").lower().strip()
     COLOR = config.get("Config", "COLOR")
     COLORS = {
         "bluegreen": (np.array((88, 108, 255)), np.array((76, 50, 220))),
@@ -103,13 +107,12 @@ class trbot:
                 if not "hold" in TOGGLE_HOLD_MODE and not "toggle" in TOGGLE_HOLD_MODE:
                     os.system("cls")
                     print("[-] Your TOGGLE_HOLD_MODE in config needs to be either toggle or hold.")
-                    input();os.exit()
+                    input();exit()
                 if "hold" in TOGGLE_HOLD_MODE:
                     self.aimtoggled = False
                     self.trigtoggled = False
-                time.sleep(0.01)
+                time.sleep(0.1)
             
-
     def process(self):
         while True:
             if self.aimtoggled or self.trigtoggled:
@@ -119,7 +122,7 @@ class trbot:
                     if len(contours) != 0:
                         self.handle_contours(contours)
             else:
-                time.sleep(0.1)
+                time.sleep(0.01)
 
     def get_contours(self, img):
         hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
@@ -140,19 +143,23 @@ class trbot:
         if distance <= AIM_FOV:
             x2 = x * AIM_SPEED_X
             y2 = y * AIM_SPEED_Y
-            if m:
+            if "driver" in MOUSE_TYPE:
                 if x2 != 0 and y2 != 0 and self.aimtoggled < 0 and -10 < y2 < 10 and distance > SMOOTH_FIX:
                     m.move(int(x2), int(y2))
                 if x2 < TRIGGERBOT_DISTANCE and y2 < TRIGGERBOT_DISTANCE and self.trigtoggled:
                     m.press()
                     m.release()
-            else:
+            elif "logitech" in MOUSE_TYPE or "ghub" in MOUSE_TYPE:
                 if x2 != 1 and y2 != 1 and self.aimtoggled and -10 < y2 < 10 and distance > SMOOTH_FIX:
                     mouse_move(0, int(x2), int(y2), 0)
                 if distance < TRIGGERBOT_DISTANCE and self.trigtoggled:
                     mouse_move(1, 0, 0, 0)
-                    time.sleep(0.001)
                     mouse_move(0, 0, 0, 0)
+            elif "arduino" in MOUSE_TYPE:
+                if x2 != 1 and y2 != 1 and self.aimtoggled and -10 < y2 < 10 and distance > SMOOTH_FIX:
+                    mouse_cmd(x2, y2, 0, m)
+                if distance < TRIGGERBOT_DISTANCE and self.trigtoggled:
+                    mouse_cmd(0, 0, 1, m)
 
 
 def print_banner(bot: trbot):
@@ -244,8 +251,8 @@ def print_banner(bot: trbot):
             last_values["aim_offset_y"] = AIM_OFFSET_Y
             last_values["enemy_color"] = COLOR
             last_values["toggle_hold_mode"] = TOGGLE_HOLD_MODE
-
-        time.sleep(0.1)
+        else:
+            time.sleep(0.1)
 
 def create_square_outline_image(side_length, color, alpha, outline_width):
     image = Image.new('RGBA', (side_length, side_length), (0, 0, 0, 0))
@@ -290,6 +297,7 @@ def auto_update_config():
 
 if __name__ == "__main__":
     bot = trbot()
+    m = getMouse()
     root = tk.Tk()
     root.withdraw()
     task_queue = queue.Queue()
@@ -303,10 +311,9 @@ if __name__ == "__main__":
     toggle_thread.start()
     if SHOW_FOV:
         create_square(AIM_FOV, AIM_FOV_COLOR, 255)
-    m = getMouse()
     while True:
+        time.sleep(0.08)
         root.update()
-        time.sleep(0.02)
         while not task_queue.empty():
             task = task_queue.get_nowait()
-            task() 
+            task()

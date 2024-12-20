@@ -1,3 +1,3 @@
 @echo off
-set FILE_PATH=%~dp0Colorbot.py
-powershell -Command "Start-Process python '%FILE_PATH%' -Verb runAs"
+cd /d %~dp0
+powershell -Command "Start-Process python 'Colorbot.py' -Verb RunAs"
