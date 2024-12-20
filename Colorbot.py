@@ -80,7 +80,7 @@ camera = bettercam.create(output_idx=0, output_color="BGR", region=region)
 center = CAM_FOV / 2
 overlay_window = None
 
-def lclc():
+def activate_key_pressed():
     return win32api.GetAsyncKeyState(get_keycode(AIM_KEY)) < 0 or win32api.GetAsyncKeyState(get_keycode(TRIGGERBOT_KEY))
 
 class trbot:
@@ -88,11 +88,11 @@ class trbot:
         self.aimtoggled = False
 
     def handle_aim_toggle(self):
-        while lclc():
+        while activate_key_pressed():
             if not self.aimtoggled:
                 self.aimtoggle()
                 print_banner(self)
-            while self.aimtoggled and lclc():
+            while self.aimtoggled and activate_key_pressed():
                 self.process()
             if self.aimtoggled:
                 self.aimtoggle()
@@ -220,6 +220,7 @@ def auto_update_config():
             last_modified_time = current_modified_time
         time.sleep(1)
 
+
 if __name__ == "__main__":
     bot = trbot()
     root = tk.Tk()
@@ -234,7 +235,7 @@ if __name__ == "__main__":
     while True:
         root.update()
         time.sleep(0.02)
-        if lclc():
+        if activate_key_pressed():
             bot.handle_aim_toggle()
         while not task_queue.empty():
             task = task_queue.get_nowait()
