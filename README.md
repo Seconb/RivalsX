@@ -23,6 +23,7 @@ It might aim at random things or bug out after killing someone (can't do anythin
 Other issues: Ask ChatGPT or Aimmy members. If you DM me, I WILL be blocking you.
 
 ## Troubleshooting
+- "BetterCam has no function is_pressed", or "_ctypes.COMError:" can be resolved by playing in Borderless Fullscreen or by going to your graphics settings in Windows, clicking browse, finding Python.exe, and making it use your dedicated GPU. Do the same with pythonw.exe. If this doesn't work, try it with the integrated one in your CPU.
 - Go to the model-request channel in the Aimmy Discord and find the "marvel rivals pls" thread for help (or just ask in General), That's where most people are talking about this lol. You can also ask in Github Issues.
 - Will add more in the future, sit tight.
 
