@@ -11,7 +11,7 @@ A Marvel Rivals Colorbot with multiple input options
 1. (ARDUINO USERS ONLY) Go to "Arduino Hex Uploader" and run the correct bat file according to if your COM port is visible or not. You can check by opening Device Manager and seeing if you have a "USB Serial Device" under Ports. If you do, then run the COM enabled .bat. If not, run the no COM one. Here's a video demonstration for the Arduino setup part: [![Video Tutorial](https://img.youtube.com/vi/1aRrjKzYCG0/0.jpg)](https://www.youtube.com/watch?v=1aRrjKzYCG0)
 1. (DRIVER USERS) *WITH THE GAME CLOSED* Go to the "driver" folder, and drag "drag into map.sys" into "map.exe". If it says success you can close that out. 
 If it fails or something make sure you disable Secure Boot and Core Isolation on your PC. Only needs to be done once.
-1. (LOGITECH USERS) Download: https://download01.logi.com/web/ftp/pub/techsupport/gaming/lghub_installer_2021.3.5164.exe, then after installing uncheck "Automatic Updates"
+1. (LOGITECH USERS) Download: [GHUB](https://download01.logi.com/web/ftp/pub/techsupport/gaming/lghub_installer_2021.3.5164.exe), then after installing uncheck "Automatic Updates"
 2. Download Python (any version newer than 3.6 will work), in the installer make sure you check "Add Python.EXE to PATH" in the installer or it won't work.
 3. Change your stuff in config.ini, and if using arduino then change MOUSE_TYPE to arduino, if using the driver keep it on driver, if using logitech keep it on logitech or ghub.
 4. Open "install_libraries.bat", then when that's done open RunColorbot.bat as admin.
