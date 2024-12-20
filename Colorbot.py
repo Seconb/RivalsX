@@ -16,26 +16,6 @@ import ctypes
 import threading
 import queue
 
-def is_admin():
-    try:
-        return ctypes.windll.shell32.IsUserAnAdmin()
-    except Exception as e:
-        print(f"Error checking admin privileges: {e}")
-        return False
-
-def run_as_admin():
-    if not is_admin():
-        try:
-            import sys
-            script = os.path.abspath(__file__)
-            params = ' '.join(f'"{arg}"' for arg in sys.argv[1:])
-            win32api.ShellExecute(0, "runas", sys.executable, f'"{script}" {params}', None, 1)
-            sys.exit(0)
-        except Exception as e:
-            input(f"[-] Failed to run as admin, open UAC and set it to the lowest option! : {e}")
-            sys.exit(1)
-    return True
-
 def getMouse():
     if "arduino" in config.get("Config", "MOUSE_TYPE").lower():
         try:
@@ -48,7 +28,6 @@ def getMouse():
     elif "driver" in config.get("Config", "MOUSE_TYPE").lower():
         try:
             from utils.driver_mouse import mainFunction
-            run_as_admin()
             mouse = mainFunction()
             return mouse
         except DeviceNotFoundError as e:
