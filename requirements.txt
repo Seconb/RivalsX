@@ -1,0 +1,8 @@
+Pillow
+pywin32
+bettercam
+configparser
+opencv-python
+numpy
+colorama
+hidapi
