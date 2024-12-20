@@ -77,5 +77,5 @@ def mouse_move(button, x, y, wheel) -> None:
 
 if not mouse_open():
     print("[-] G Hub is not open, or there is another issue! Download LG Hub at: https://download01.logi.com/web/ftp/pub/techsupport/gaming/lghub_installer_2021.3.5164.exe and disable automatic updates.")
-else:
-    print("[+] G Hub is functioning as expected.")
+    input()
+    exit()

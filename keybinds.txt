@@ -1,0 +1,101 @@
+Left Click | LMB | L1
+Right Click | RMB | R1
+Control-break processing
+Middle Mouse
+Side Mouse 1 | X1
+Side Mouse 2 | X2
+Backspace
+Tab
+Clear
+Enter
+Shift | Left Shift | Right Shift
+Ctrl | Control | Left Control | Right Control
+Alt | Left Alt | Right Alt
+Pause
+Caps Lock
+Esc
+Spacebar
+Page Up
+Page Down
+End
+Home
+Left Arrow
+Up Arrow
+Right Arrow
+Down Arrow
+Select
+Print
+Execute
+Print Screen
+Insert
+Delete
+Help
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+A
+B
+C
+D
+E
+F
+G
+H
+I
+J
+K
+L
+M
+N
+O
+P
+Q
+R
+S
+T
+U
+V
+W
+X
+Y
+Z
+Left Windows
+Right Windows
+Applications
+Num 0
+Num 1
+Num 2
+Num 3
+Num 4
+Num 5
+Num 6
+Num 7
+Num 8
+Num 9
+Multiply
+Add
+Separator
+Subtract
+Decimal
+Divide
+F1
+F2
+F3
+F4
+F5
+F6
+F7
+F8
+F9
+F10
+F11
+F12
+Num Lock
+Scroll Lock
