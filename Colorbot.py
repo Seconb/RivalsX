@@ -12,7 +12,6 @@ from utils.keybinds import *
 from utils.logitech_mouse import *
 import tkinter as tk
 from PIL import Image, ImageDraw, ImageTk
-import ctypes
 import threading
 import queue
 
@@ -220,7 +219,6 @@ def auto_update_config():
                 task_queue.put(lambda: create_square(AIM_FOV, AIM_FOV_COLOR, 255))
             last_modified_time = current_modified_time
         time.sleep(1)
-
 
 if __name__ == "__main__":
     bot = trbot()
