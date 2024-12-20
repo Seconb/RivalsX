@@ -18,7 +18,7 @@ If it fails or something make sure you disable Secure Boot and Core Isolation on
 5. Change your ingame enemy outline color to Pinkish-Purple, Green, or Blue-Green, and set your brightness ingame to 100. You can change your monitor's brightness (OUTSIDE OF GAME) if it's too much.
 6. Disable Mouse Acceleration from the game files (Google how to do this). It will help tremendously.
 7. As you use the colorbot adjust settings so that things work. Edit config.ini to change config, save the file and the colorbot will auto-update it. 
-It might aim at random things or bug out after killing someone (can't do anything about it, sorry). Maybe try the other outline color options.
+It might aim at random things or bug out after killing someone (can't do anything about it, sorry). Maybe try the other outline color options. Remember to keep the game in Borderless Fullscreen.
 
 Other issues: Ask ChatGPT or Aimmy members. If you DM me, I WILL be blocking you.
 
