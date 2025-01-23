@@ -60,7 +60,7 @@ def loadsettings():
     MOUSE_TYPE = config.get("Config", "MOUSE_TYPE").lower().strip()
     COLOR = config.get("Config", "COLOR")
     COLORS = {
-        "bluegreen": (np.array((88, 108, 255)), np.array((76, 50, 220))),
+        "bluegreen": (np.array((90, 100, 255)), np.array((80, 40, 225))),
         "pinkishpurple": (np.array((150, 120, 255)), np.array((150, 85, 230))),
         "green": (np.array((75, 145, 255)), np.array((55, 70, 235))),
     }
