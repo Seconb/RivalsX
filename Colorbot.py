@@ -63,6 +63,7 @@ def loadsettings():
         "bluegreen": (np.array((90, 100, 255)), np.array((80, 40, 225))),
         "pinkishpurple": (np.array((150, 120, 255)), np.array((150, 85, 230))),
         "green": (np.array((75, 145, 255)), np.array((55, 70, 235))),
+        "pink": (np.array((160, 155, 255)), np.array((150, 100, 245)))
     }
     upper, lower = COLORS[COLOR.lower()]
 
